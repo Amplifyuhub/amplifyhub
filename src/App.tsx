@@ -129,15 +129,20 @@ function App() {
         <section className="container mx-auto px-4 py-16 bg-white">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-              🎯 O Que Você Ganha com a Amplify?
+            Por que escolher a Amplify?
             </h2>
+            <div className="max-w-xl mx-auto">
+            <p className="text-gray-700 text-center mt-4 mb-12">
+        A Amplify revoluciona o marketing de influência ao conectar influenciadores regionais com empresas locais de forma estratégica e eficiente. Se você busca visibilidade, engajamento e resultados mensuráveis, a Amplify é a plataforma ideal para potencializar suas campanhas.
+      </p>
+                </div>
             <div className="space-y-6">
               <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-xl">
                 <span className="text-2xl">✅</span>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2">Match Perfeito</h3>
+                  <h3 className="font-semibold text-xl mb-2">Conexões Inteligentes</h3>
                   <p className="text-gray-700">
-                    Conectamos marcas e influenciadores com base em dados reais e perfis compatíveis.
+                  Unimos marcas e influenciadores com base em dados reais, garantindo parcerias estratégicas e autênticas.
                   </p>
                 </div>
               </div>
@@ -145,9 +150,9 @@ function App() {
               <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-xl">
                 <span className="text-2xl">✅</span>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2">Campanhas Sob Medida</h3>
+                  <h3 className="font-semibold text-xl mb-2">Campanhas Personalizadas</h3>
                   <p className="text-gray-700">
-                    Anuncie com influenciadores que realmente influenciam seu público-alvo.
+                  Divulgue sua marca com influenciadores que realmente impactam seu público-alvo.
                   </p>
                 </div>
               </div>
@@ -155,9 +160,9 @@ function App() {
               <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-xl">
                 <span className="text-2xl">✅</span>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2">Métricas e Resultados</h3>
+                  <h3 className="font-semibold text-xl mb-2">Resultados Mensuráveis</h3>
                   <p className="text-gray-700">
-                    Acompanhe o desempenho das campanhas e otimize sua estratégia.
+                    Acompanhe métricas detalhadas e otimize suas campanhas para um desempenho ainda melhor.
                   </p>
                 </div>
               </div>
@@ -167,7 +172,7 @@ function App() {
                 <div>
                   <h3 className="font-semibold text-xl mb-2">Plataforma Gamificada</h3>
                   <p className="text-gray-700">
-                    Participe de desafios, aumente sua relevância e ganhe mais oportunidades de parceria.
+                  Engaje-se em desafios, aumente sua influência e conquiste mais oportunidades de parceria.
                   </p>
                 </div>
               </div>
@@ -175,9 +180,29 @@ function App() {
               <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-xl">
                 <span className="text-2xl">✅</span>
                 <div>
-                  <h3 className="font-semibold text-xl mb-2">Monetização Simples e Eficiente</h3>
+                  <h3 className="font-semibold text-xl mb-2">Suporte Estratégico</h3>
                   <p className="text-gray-700">
-                    Influenciadores encontram marcas ideais, e empresas investem em publicidade que realmente traz retorno.
+                  Conte com um time especializado para ajudar em todas as etapas, desde a criação da campanha até a análise de resultados.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-xl">
+                <span className="text-2xl">✅</span>
+                <div>
+                  <h3 className="font-semibold text-xl mb-2">Monetização Descomplicada</h3>
+                  <p className="text-gray-700">
+                  Influenciadores encontram as marcas ideais, e empresas investem em publicidade com retorno garantido.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-xl">
+                <span className="text-2xl">✅</span>
+                <div>
+                  <h3 className="font-semibold text-xl mb-2">Networking e Crescimento</h3>
+                  <p className="text-gray-700">
+                  Participe de eventos, webinars e fóruns exclusivos para ampliar sua rede de contatos e aprender com os melhores do mercado.
                   </p>
                 </div>
               </div>
