@@ -1,0 +1,18 @@
+:root {
+  /* Substitua os valores atuais pelas novas cores desejadas */
+  --primary-color: #f97316; /* Laranja (orange-500 no Tailwind) */
+  --secondary-color: #fb923c; /* Laranja mais claro (orange-400) */
+  --accent-color: #fdba74; /* Laranja ainda mais claro (orange-300) */
+  --hover-color: #ee6b25; /* Laranja mais escuro (orange-600) */
+  
+  /* Definir variável Tailwind para compatibilidade */
+  --orange-500: 249 115 22; /* RGB para laranja */
+  
+  /* Nova variável para o gradiente */
+  --gradient-end: #ffb55d;
+}
+
+/* Classe personalizada para substituir .to-white */
+.to-orange-light {
+  --tw-gradient-to: var(--gradient-end) var(--tw-gradient-to-position);
+} 
