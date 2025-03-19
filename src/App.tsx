@@ -4,6 +4,7 @@ import { Users, Building2, BarChart as ChartBar, Rocket, Target, DollarSign, Che
 import { Testimonials } from './components/Testimonials';
 import LoginDropdown from './components/LoginDropdown';
 import logoImage from './assets/logo.png';
+import principalImage from './assets/Principal.png';
 import RouteDebugger from './components/RouteDebugger';
 
 
@@ -59,9 +60,12 @@ function App() {
               Conectando <span className="text-orange-500">Influenciadores</span> e <span className="text-orange-500">Anunciante</span>
             </h1>
             
-            {/* Carrossel de imagens */}
             <div className="relative w-full max-w-5xl mx-auto mt-8 mb-12">
-              {/* Conteúdo do primeiro carrossel */}
+              <img 
+                src={principalImage} 
+                alt="Principal" 
+                className="w-full rounded-lg shadow-xl"
+              />
             </div>
             
             <p className="text-xl text-gray-600 mb-8">
