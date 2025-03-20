@@ -1,9 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Building, Users, BarChart2, Settings, LogOut, Bell, PlusCircle, Calendar, Clock, Search, Filter, ChevronDown, ArrowRight } from 'lucide-react';
 import logoImage from '../assets/logo.png';
 
 const CampanhasAnunciante = () => {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const location = useLocation();
+  
+  // Verifica se estamos na rota pública ou na rota de anunciante
+  const isPublicRoute = !location.pathname.includes('anunciante');
   
   // Funções de navegação
   const goToHome = () => navigate('/');
@@ -80,8 +85,11 @@ const CampanhasAnunciante = () => {
     },
   ];
 
+  // Se temos um ID, buscamos a campanha específica
+  const campanhaSelecionada = id ? campanhas.find(c => c.id === parseInt(id)) : null;
+  
   // Função para mostrar a cor correta com base no status
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case 'Em andamento':
         return 'bg-green-100 text-green-800';
@@ -94,6 +102,217 @@ const CampanhasAnunciante = () => {
     }
   };
 
+  // Se estamos na rota pública e com um ID específico, mostramos os detalhes
+  if (isPublicRoute && id && campanhaSelecionada) {
+    
+    // Função para validar login do influenciador e cadastrar na campanha
+    const handleCadastroInfluenciador = () => {
+      // Aqui seria feita uma validação real de autenticação
+      // Simulando uma verificação de login
+      const estaLogado = localStorage.getItem('influenciador_logado') === 'true';
+      
+      if (estaLogado) {
+        // Se estiver logado, cadastra na campanha
+        alert('Você foi cadastrado nesta campanha com sucesso!');
+        // Aqui seria feita a chamada API para cadastrar o influenciador na campanha
+      } else {
+        // Se não estiver logado, redireciona para registro com ID da campanha
+        alert('Você precisa estar cadastrado como influenciador para participar');
+        navigate(`/cadastro?campanha=${id}`);
+      }
+    };
+    
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <nav className="bg-white border-b">
+          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div onClick={goToHome} className="cursor-pointer">
+              <img src={logoImage} alt="Amplify" className="h-8" />
+            </div>
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => navigate('/login')}
+                className="px-6 py-2 bg-white text-orange-500 rounded-full font-medium border-2 border-orange-500 hover:bg-orange-50 transition-colors"
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <div className="container mx-auto px-4 py-8">
+          <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:w-1/3">
+                <img 
+                  src={campanhaSelecionada.imagem} 
+                  alt={campanhaSelecionada.nome} 
+                  className="w-full h-64 md:h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <h2 className="text-2xl font-bold text-gray-900">{campanhaSelecionada.nome}</h2>
+                      <span className={`${getStatusColor(campanhaSelecionada.status)} text-xs font-medium px-2.5 py-0.5 rounded`}>
+                        {campanhaSelecionada.status}
+                      </span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Calendar className="h-4 w-4 mr-1" />
+                      <span>{campanhaSelecionada.dataInicio} - {campanhaSelecionada.dataFim}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mb-6">
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm text-gray-500">Progresso</span>
+                    <span className="text-sm text-gray-600">{campanhaSelecionada.progresso}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-orange-500 h-2 rounded-full" style={{ width: `${campanhaSelecionada.progresso}%` }}></div>
+                  </div>
+                </div>
+                
+                <div className="grid md:grid-cols-4 gap-6 mb-6">
+                  <div>
+                    <div className="text-sm text-gray-500 mb-1">Influenciadores</div>
+                    <div className="text-xl font-bold">{campanhaSelecionada.influenciadores}</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-gray-500 mb-1">Alcance</div>
+                    <div className="text-xl font-bold">{campanhaSelecionada.alcance}</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-gray-500 mb-1">Engajamento</div>
+                    <div className="text-xl font-bold">{campanhaSelecionada.engajamento}</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-gray-500 mb-1">Orçamento</div>
+                    <div className="text-xl font-bold">{campanhaSelecionada.orcamento}</div>
+                  </div>
+                </div>
+                
+                <div className="border-t pt-6 flex justify-between items-center">
+                  <button 
+                    onClick={handleCadastroInfluenciador}
+                    className="px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-colors flex items-center"
+                  >
+                    Candidatar-se como Influenciador
+                  </button>
+                  
+                  <button 
+                    onClick={() => navigate('/campanhas')}
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                  >
+                    Voltar para Campanhas
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Se estamos na rota pública sem ID, mostramos a lista de campanhas para usuários comuns
+  if (isPublicRoute) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <nav className="bg-white border-b">
+          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div onClick={goToHome} className="cursor-pointer">
+              <img src={logoImage} alt="Amplify" className="h-8" />
+            </div>
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => navigate('/login')}
+                className="px-6 py-2 bg-white text-orange-500 rounded-full font-medium border-2 border-orange-500 hover:bg-orange-50 transition-colors"
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-6">Campanhas Disponíveis</h1>
+          
+          <div className="space-y-6">
+            {campanhas.map(campanha => (
+              <div key={campanha.id} className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-48 h-48 md:h-auto">
+                    <img 
+                      src={campanha.imagem} 
+                      alt={campanha.nome} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 p-6">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <div className="flex items-center gap-3 mb-2">
+                          <h2 className="text-xl font-bold text-gray-900">{campanha.nome}</h2>
+                          <span className={`${getStatusColor(campanha.status)} text-xs font-medium px-2.5 py-0.5 rounded`}>
+                            {campanha.status}
+                          </span>
+                        </div>
+                        <div className="flex items-center text-sm text-gray-500 mb-4">
+                          <Calendar className="h-4 w-4 mr-1" />
+                          <span>{campanha.dataInicio} - {campanha.dataFim}</span>
+                        </div>
+                      </div>
+                      <button 
+                        onClick={() => navigate(`/campanha/${campanha.id}`)}
+                        className="text-orange-500 hover:text-orange-600 p-1"
+                      >
+                        <ArrowRight className="h-5 w-5" />
+                      </button>
+                    </div>
+                    
+                    <div className="mb-4">
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sm text-gray-500">Progresso</span>
+                        <span className="text-sm text-gray-600">{campanha.progresso}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: `${campanha.progresso}%` }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div>
+                        <div className="text-xs text-gray-500">Influenciadores</div>
+                        <div className="font-bold">{campanha.influenciadores}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-500">Alcance</div>
+                        <div className="font-bold">{campanha.alcance}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-500">Engajamento</div>
+                        <div className="font-bold">{campanha.engajamento}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-500">Orçamento</div>
+                        <div className="font-bold">{campanha.orcamento}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Versão original para anunciantes
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}

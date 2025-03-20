@@ -13,6 +13,7 @@ import ParceiriasInfluenciador from './pages/ParceiriasInfluenciador'
 import DesempenhoInfluenciador from './pages/DesempenhoInfluenciador'
 import InfluenciadoresAnunciante from './pages/InfluenciadoresAnunciante'
 import CampanhasAnunciante from './pages/CampanhasAnunciante'
+import Influenciadores from './pages/Influenciadores'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -31,6 +32,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/desempenho-influenciador" element={<DesempenhoInfluenciador />} />
         <Route path="/influenciadores-anunciante" element={<InfluenciadoresAnunciante />} />
         <Route path="/campanhas-anunciante" element={<CampanhasAnunciante />} />
+        <Route path="/campanhas" element={<CampanhasAnunciante />} />
+        <Route path="/campanha/:id" element={<CampanhasAnunciante />} />
+        <Route path="/influenciadores" element={<Influenciadores />} />
+        <Route path="/influenciador/:id" element={<Influenciadores />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Users, Building2, BarChart as ChartBar, Rocket, Target, DollarSign, ChevronDown, Menu, X, User, Check } from 'lucide-react';
 import { Testimonials } from './components/Testimonials';
 import LoginDropdown from './components/LoginDropdown';
+import CampanhasMenu from './components/CampanhasMenu';
 import logoImage from './assets/logo.png';
 import principalImage from './assets/Principal.png';
 import RouteDebugger from './components/RouteDebugger';
@@ -37,6 +38,10 @@ function App() {
                 className="h-8"
               />
             </Link>
+          </div>
+          <div className="hidden md:flex items-center space-x-6">
+            <CampanhasMenu />
+            <Link to="/influenciadores" className="text-gray-800 hover:text-orange-500 font-medium">Influenciadores</Link>
           </div>
           <div>
             <button 

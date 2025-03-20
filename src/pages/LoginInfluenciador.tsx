@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, Lock, User } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { ArrowLeft, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
 import logoImage from '../assets/logo.png';
 
 const LoginInfluenciador = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [lembrar, setLembrar] = useState(false);
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [redirectUrl, setRedirectUrl] = useState('');
+
+  // Recuperar o parâmetro de redirecionamento da URL, se existir
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const redirect = params.get('redirect');
+    if (redirect) {
+      setRedirectUrl(redirect);
+    }
+  }, [location]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login de influenciador:', { email, senha, lembrar });
-    // Lógica de autenticação aqui
-    navigate('/painel-influenciador'); // Redireciona para o painel após login
+    
+    // Simulando autenticação
+    if (email && password) {
+      // Em uma aplicação real, aqui teríamos uma chamada à API para autenticação
+      localStorage.setItem('influenciador_logado', 'true');
+      
+      // Redirecionar para a página solicitada ou para o painel do influenciador
+      if (redirectUrl) {
+        navigate(redirectUrl);
+      } else {
+        navigate('/painel-influenciador');
+      }
+    }
   };
 
   return (
@@ -66,7 +87,7 @@ const LoginInfluenciador = () => {
             </div>
 
             <div>
-              <label htmlFor="senha" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Senha
               </label>
               <div className="relative">
@@ -74,31 +95,25 @@ const LoginInfluenciador = () => {
                   <Lock className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
-                  id="senha"
-                  type="password"
-                  value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Sua senha"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
               </div>
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="lembrar"
-                  type="checkbox"
-                  checked={lembrar}
-                  onChange={(e) => setLembrar(e.target.checked)}
-                  className="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded"
-                />
-                <label htmlFor="lembrar" className="ml-2 block text-sm text-gray-700">
-                  Lembrar de mim
-                </label>
-              </div>
-
               <div className="text-sm">
                 <a href="#" className="text-orange-500 hover:underline">
                   Esqueceu a senha?
