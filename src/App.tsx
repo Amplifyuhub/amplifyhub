@@ -23,7 +23,7 @@ function FeatureCard({ icon: Icon, title, description }: { icon: React.ElementTy
 
 function App() {
   const [isLoginDropdownOpen, setIsLoginDropdownOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <>
@@ -39,11 +39,15 @@ function App() {
               />
             </Link>
           </div>
+          
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
             <CampanhasMenu />
             <Link to="/influenciadores" className="text-gray-800 hover:text-orange-500 font-medium">Influenciadores</Link>
           </div>
-          <div>
+          
+          {/* Botão de Login (desktop) */}
+          <div className="hidden md:block">
             <button 
               onClick={() => setIsLoginDropdownOpen(!isLoginDropdownOpen)}
               className="px-8 py-3 bg-white text-orange-500 rounded-full font-semibold border-2 border-orange-500 hover:bg-orange-50 transition-colors inline-flex items-center justify-center gap-2"
@@ -56,7 +60,53 @@ function App() {
               onClose={() => setIsLoginDropdownOpen(false)} 
             />
           </div>
+          
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-md text-gray-700 hover:bg-gray-100"
+            >
+              {isMobileMenuOpen ? 
+                <X className="h-6 w-6" /> : 
+                <Menu className="h-6 w-6" />
+              }
+            </button>
+          </div>
         </nav>
+        
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-white shadow-lg absolute z-50 inset-x-0 animate-fadeIn">
+            <div className="container mx-auto px-4 py-4 flex flex-col">
+              <Link 
+                to="/campanhas" 
+                className="py-3 px-4 hover:bg-orange-50 border-b text-gray-800"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Campanhas
+              </Link>
+              <Link 
+                to="/influenciadores" 
+                className="py-3 px-4 hover:bg-orange-50 border-b text-gray-800"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Influenciadores
+              </Link>
+              <div className="pt-3 px-4">
+                <button 
+                  onClick={() => {
+                    setIsLoginDropdownOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-colors"
+                >
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Hero Section */}
         <header className="container mx-auto px-4 py-16 md:py-20">
