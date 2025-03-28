@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Search, Filter, ChevronDown } from 'lucide-react';
 import logoImage from '../assets/logo.png';
+import ProfileCompletionMeter from '../components/ProfileCompletionMeter';
 
 interface Influenciador {
   id: number;
@@ -11,6 +12,15 @@ interface Influenciador {
   engajamento: string;
   nicho: string[];
   image: string;
+  cidade?: string;
+  instagram?: string;
+  telefone?: string;
+  email?: string;
+  cpf?: string;
+  dataNascimento?: string;
+  idade?: string;
+  engajamentoMedio?: string;
+  biografia?: string;
 }
 
 const Influenciadores = () => {
@@ -21,7 +31,7 @@ const Influenciadores = () => {
 
   // Simula a obtenção de dados dos influenciadores (em uma aplicação real, seria uma chamada à API)
   useEffect(() => {
-    // Dados fictícios de influenciadores cadastrados
+    // Dados fictícios de influenciadores
     const influenciadoresData = [
       {
         id: 1,
@@ -30,7 +40,12 @@ const Influenciadores = () => {
         seguidores: '12.5K',
         engajamento: '4.2%',
         nicho: ['Moda Sustentável', 'Estilo Casual'],
-        image: 'https://randomuser.me/api/portraits/women/44.jpg'
+        image: 'https://randomuser.me/api/portraits/women/44.jpg',
+        cidade: 'São Paulo, SP',
+        instagram: '@ana.style',
+        email: 'ana@email.com',
+        engajamentoMedio: '4.2%',
+        biografia: 'Apaixonada por moda sustentável'
       },
       {
         id: 2,
@@ -39,7 +54,10 @@ const Influenciadores = () => {
         seguidores: '8.3K',
         engajamento: '5.6%',
         nicho: ['Receitas Veganas', 'Comida Saudável'],
-        image: 'https://randomuser.me/api/portraits/men/32.jpg'
+        image: 'https://randomuser.me/api/portraits/men/32.jpg',
+        cidade: 'Rio de Janeiro, RJ',
+        instagram: '@carlos.food',
+        engajamentoMedio: '5.6%'
       },
       {
         id: 3,
@@ -183,11 +201,26 @@ const Influenciadores = () => {
               <div key={influenciador.id} className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                 <div className="p-6">
                   <div className="flex items-center gap-4 mb-4">
-                    <img 
-                      src={influenciador.image} 
-                      alt={influenciador.nome} 
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
+                    <div className="relative">
+                      <ProfileCompletionMeter
+                        profileData={{
+                          nome: influenciador.nome,
+                          foto: influenciador.image,
+                          cidade: influenciador.cidade,
+                          instagram: influenciador.instagram,
+                          telefone: influenciador.telefone,
+                          email: influenciador.email,
+                          cpf: influenciador.cpf,
+                          dataNascimento: influenciador.dataNascimento,
+                          idade: influenciador.idade,
+                          categoria: influenciador.categoria,
+                          seguidores: influenciador.seguidores,
+                          engajamentoMedio: influenciador.engajamentoMedio,
+                          biografia: influenciador.biografia
+                        }}
+                        size="sm"
+                      />
+                    </div>
                     <div>
                       <h3 className="font-medium text-gray-900">{influenciador.nome}</h3>
                       <p className="text-sm text-gray-500">{influenciador.categoria}</p>
@@ -205,7 +238,7 @@ const Influenciadores = () => {
                     </div>
                   </div>
                   
-                  <div className="mb-5">
+                  <div>
                     <p className="text-sm text-gray-500 mb-2">Nichos</p>
                     <div className="flex flex-wrap gap-2">
                       {influenciador.nicho.map((nicho, index) => (
@@ -219,7 +252,7 @@ const Influenciadores = () => {
                     </div>
                   </div>
                   
-                  <div className="flex space-x-2">
+                  <div className="mt-4 flex space-x-2">
                     <button 
                       onClick={() => navigate(`/influenciador/${influenciador.id}`)}
                       className="flex-1 px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"

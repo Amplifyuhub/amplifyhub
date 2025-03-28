@@ -6,6 +6,7 @@ import LoginDropdown from './components/LoginDropdown';
 import CampanhasMenu from './components/CampanhasMenu';
 import logoImage from './assets/logo.png';
 import principalImage from './assets/Principal.png';
+import megafoneImage from './assets/megafone.png';
 import RouteDebugger from './components/RouteDebugger';
 
 
