@@ -5,15 +5,17 @@ interface UserData {
   email: string
   password: string
   user_type: 'anunciante' | 'influenciador'
-  // Influencer specific fields
+  // Campos comuns
   category?: string
   niches?: string[]
+  phone?: string
+  // Campos específicos do influenciador
+  instagram?: string
   followers?: number
-  // Advertiser specific fields
+  // Campos específicos do anunciante
   company_name?: string
   segment?: string
   website?: string
-  phone?: string
 }
 
 interface CampaignData {
@@ -163,11 +165,52 @@ class DatabaseService {
   // Cadastro de usuário (anunciante ou influenciador)
   async createUser(userData: UserData) {
     try {
-      // Garantir que o campo created_at seja incluído
+      console.log('Iniciando criação de usuário com:', { ...userData, password: '***' });
+
+      // Primeiro, criar o usuário na autenticação do Supabase
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: userData.email,
+        password: userData.password,
+        options: {
+          data: {
+            name: userData.name,
+            user_type: userData.user_type
+          }
+        }
+      });
+
+      if (authError) {
+        console.error('Erro na autenticação:', authError);
+        throw new Error(`Erro ao criar usuário: ${authError.message}`);
+      }
+
+      console.log('Usuário criado com sucesso na autenticação:', authData);
+
+      if (!authData.user) {
+        throw new Error('Erro ao criar usuário: Usuário não foi criado na autenticação');
+      }
+
+      // Depois, criar o registro na tabela users
       const userDataWithTimestamp = {
-        ...userData,
-        created_at: new Date().toISOString()
+        id: authData.user.id,
+        name: userData.name,
+        email: userData.email,
+        user_type: userData.user_type,
+        created_at: new Date().toISOString(),
+        ...(userData.user_type === 'influenciador' ? {
+          category: userData.category,
+          niches: userData.niches,
+          instagram: userData.instagram,
+          phone: userData.phone
+        } : {
+          company_name: userData.company_name,
+          segment: userData.segment,
+          website: userData.website,
+          phone: userData.phone
+        })
       };
+
+      console.log('Tentando criar registro na tabela users:', userDataWithTimestamp);
 
       const { data, error } = await supabase
         .from('users')
@@ -180,6 +223,7 @@ class DatabaseService {
         throw new Error(`Erro ao criar usuário: ${error.message}`);
       }
 
+      console.log('Registro criado com sucesso na tabela users:', data);
       return data;
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
@@ -322,6 +366,7 @@ class DatabaseService {
       const anunciante = await this.createUser({
         name: 'Anunciante Teste',
         email: 'anunciante@teste.com',
+        password: 'senha123',
         user_type: 'anunciante',
       });
 
@@ -329,6 +374,7 @@ class DatabaseService {
       const influenciador = await this.createUser({
         name: 'Influenciador Teste',
         email: 'influenciador@teste.com',
+        password: 'senha123',
         user_type: 'influenciador',
       });
 

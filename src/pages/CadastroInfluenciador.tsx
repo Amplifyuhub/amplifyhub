@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { databaseService } from '../services/database.service';
 
 interface CadastroInfluenciadorProps {
@@ -8,6 +8,7 @@ interface CadastroInfluenciadorProps {
 
 const CadastroInfluenciador: React.FC<CadastroInfluenciadorProps> = ({ campanhaId }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -60,9 +61,9 @@ const CadastroInfluenciador: React.FC<CadastroInfluenciadorProps> = ({ campanhaI
   // Handle submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErro('');
     setLoading(true);
-    
+    setErro('');
+
     try {
       // Validações básicas
       if (!nome || !email || !senha || !categoria || nichos.length === 0) {
@@ -95,12 +96,15 @@ const CadastroInfluenciador: React.FC<CadastroInfluenciadorProps> = ({ campanhaI
       // Salvar dados do usuário na sessão
       localStorage.setItem('user', JSON.stringify(user));
       
-      // Redirecionamento
-      if (campanhaId) {
-        navigate(`/campanha/${campanhaId}`);
-      } else {
-        navigate('/painel-influenciador');
-      }
+      const state = { 
+        userType: 'influenciador',
+        returnTo: location.state?.returnTo || (campanhaId ? `/campanha/${campanhaId}` : '/painel-influenciador')
+      };
+      
+      console.log('Navigating to confirmation with state:', state);
+      
+      // Sempre redirecionar para a página de confirmação primeiro
+      navigate('/confirmacao-cadastro', { state });
     } catch (error) {
       console.error('Erro ao cadastrar:', error);
       setErro(error instanceof Error ? error.message : 'Ocorreu um erro ao cadastrar. Por favor, tente novamente.');

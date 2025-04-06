@@ -18,6 +18,7 @@ import TesteBanco from './pages/TesteBanco'
 import CadastroAnunciante from './pages/CadastroAnunciante'
 import CadastroInfluenciador from './pages/CadastroInfluenciador'
 import NovaCampanha from './pages/NovaCampanha'
+import ConfirmacaoCadastro from './pages/ConfirmacaoCadastro'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -44,6 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/cadastro-anunciante" element={<CadastroAnunciante />} />
         <Route path="/cadastro-influenciador" element={<CadastroInfluenciador />} />
         <Route path="/nova-campanha" element={<NovaCampanha />} />
+        <Route path="/confirmacao-cadastro" element={<ConfirmacaoCadastro />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
