@@ -22,7 +22,7 @@ const Register = () => {
         <div className="flex justify-between mb-8">
           <button 
             onClick={goToHome}
-            className="flex items-center text-gray-600 hover:text-orange-500"
+            className="flex items-center text-gray-600 hover:text-[#ff5d1d]"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
@@ -45,7 +45,7 @@ const Register = () => {
                 onClick={() => setTipoUsuario('influenciador')}
                 className={`py-3 rounded-lg text-center font-medium ${
                   tipoUsuario === 'influenciador'
-                    ? 'bg-orange-500 text-white'
+                    ? 'bg-[#ff5d1d] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -55,7 +55,7 @@ const Register = () => {
                 onClick={() => setTipoUsuario('anunciante')}
                 className={`py-3 rounded-lg text-center font-medium ${
                   tipoUsuario === 'anunciante'
-                    ? 'bg-orange-500 text-white'
+                    ? 'bg-[#ff5d1d] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -74,7 +74,7 @@ const Register = () => {
             <div className="mt-8 pt-6 border-t text-center">
               <p className="text-gray-600">
                 Já tem uma conta?{' '}
-                <Link to="/login" className="text-orange-500 hover:underline font-medium">
+                <Link to="/login" className="text-[#ff5d1d] hover:underline font-medium">
                   Faça login
                 </Link>
               </p>
