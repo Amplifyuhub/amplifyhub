@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Check } from 'lucide-react';
-import bannerCadastro from '@assets/Banner-cadastro.jpg';
+import bannerCadastro from '../assets/Banner-cadastro.jpg';
 
 const ConfirmacaoCadastro = () => {
   const navigate = useNavigate();

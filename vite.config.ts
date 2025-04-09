@@ -21,10 +21,10 @@ export default defineConfig(({ mode }) => {
       'import.meta.env': JSON.stringify(env)
     },
     resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src'),
-        '@assets': path.resolve(__dirname, './src/assets')
-      }
+      alias: [
+        { find: '@', replacement: path.resolve(__dirname, 'src') },
+        { find: '@assets', replacement: path.resolve(__dirname, 'src/assets') }
+      ]
     },
     build: {
       assetsDir: 'assets',

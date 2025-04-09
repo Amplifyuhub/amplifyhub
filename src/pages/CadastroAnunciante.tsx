@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button';
 import { Select } from '../components/ui/Select';
 import { MaskedInput } from '../components/ui/MaskedInput';
 import { Alert } from '../components/ui/Alert';
-import bannerCadastro from '@assets/Banner-cadastro.jpg';
+import bannerCadastro from '../assets/Banner-cadastro.jpg';
 import { databaseService } from '../services/database.service';
 
 const CadastroAnunciante = () => {
