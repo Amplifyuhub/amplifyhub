@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { api } from '../services/api';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { Select } from '../components/ui/Select';
 import { MaskedInput } from '../components/ui/MaskedInput';
 import { Alert } from '../components/ui/Alert';
-import bannerCadastro from '../assets/banner-cadastro.png';
+import bannerCadastro from '@assets/Banner-cadastro.jpg';
+import { databaseService } from '../services/database.service';
 
 const CadastroAnunciante = () => {
   const navigate = useNavigate();
@@ -21,32 +21,32 @@ const CadastroAnunciante = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
     try {
-      const response = await api.post('/anunciantes', {
-        nome,
+      const userData = {
+        name: nome,
         email,
-        senha,
-        telefone,
-        cnpj,
-        razaoSocial,
-        segmento
-      });
+        password: senha,
+        user_type: 'anunciante' as const,
+        phone: telefone,
+        company_name: razaoSocial,
+        segment: segmento
+      };
 
-      if (response.status === 201) {
-        const state = { 
-          userType: 'anunciante',
-          returnTo: location.state?.returnTo 
-        };
-        
-        console.log('Navigating to confirmation with state:', state);
-        
-        navigate('/confirmacao-cadastro', { state });
-      }
+      const user = await databaseService.createUser(userData);
+
+      const state = { 
+        userType: 'anunciante',
+        returnTo: location.state?.returnTo 
+      };
+      
+      console.log('Navigating to confirmation with state:', state);
+      
+      navigate('/confirmacao-cadastro', { state });
     } catch (err: any) {
       if (err.response?.data?.message) {
         setError(err.response.data.message);

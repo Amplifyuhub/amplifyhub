@@ -210,21 +210,20 @@ class DatabaseService {
         })
       };
 
-      console.log('Tentando criar registro na tabela users:', userDataWithTimestamp);
-
-      const { data, error } = await supabase
+      const { data: user, error: userError } = await supabase
         .from('users')
         .insert([userDataWithTimestamp])
         .select()
         .single();
 
-      if (error) {
-        console.error('Erro detalhado do Supabase:', error);
-        throw new Error(`Erro ao criar usuário: ${error.message}`);
+      if (userError) {
+        console.error('Erro ao criar usuário na tabela users:', userError);
+        throw new Error(`Erro ao criar usuário: ${userError.message}`);
       }
 
-      console.log('Registro criado com sucesso na tabela users:', data);
-      return data;
+      console.log('Usuário criado com sucesso na tabela users:', user);
+
+      return user;
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
       throw error;

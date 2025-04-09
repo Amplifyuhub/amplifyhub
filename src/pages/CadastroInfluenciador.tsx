@@ -93,9 +93,6 @@ const CadastroInfluenciador: React.FC<CadastroInfluenciadorProps> = ({ campanhaI
         await databaseService.enrollInCampaign(campanhaId, user.id);
       }
       
-      // Salvar dados do usuário na sessão
-      localStorage.setItem('user', JSON.stringify(user));
-      
       const state = { 
         userType: 'influenciador',
         returnTo: location.state?.returnTo || (campanhaId ? `/campanha/${campanhaId}` : '/painel-influenciador')
