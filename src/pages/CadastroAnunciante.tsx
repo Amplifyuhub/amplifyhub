@@ -5,7 +5,6 @@ import { Button } from '../components/ui/Button';
 import { Select } from '../components/ui/Select';
 import { MaskedInput } from '../components/ui/MaskedInput';
 import { Alert } from '../components/ui/Alert';
-import bannerCadastro from '../assets/Banner-cadastro.jpg';
 import { databaseService } from '../services/database.service';
 
 const CadastroAnunciante = () => {
@@ -65,7 +64,7 @@ const CadastroAnunciante = () => {
           <div className="md:w-1/2">
             <div className="h-48 md:h-full relative">
               <img
-                src={bannerCadastro}
+                src="/banner-cadastro.jpg"
                 alt="Banner de cadastro"
                 className="w-full h-full object-cover"
               />

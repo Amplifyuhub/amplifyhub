@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Check } from 'lucide-react';
-import bannerCadastro from '../assets/Banner-cadastro.jpg';
 
 const ConfirmacaoCadastro = () => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const ConfirmacaoCadastro = () => {
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="relative h-48">
           <img
-            src={bannerCadastro}
+            src="/banner-cadastro.jpg"
             alt="Banner de confirmação"
             className="w-full h-full object-cover"
           />
