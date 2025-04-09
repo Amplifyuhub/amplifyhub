@@ -195,6 +195,7 @@ class DatabaseService {
         id: authData.user.id,
         name: userData.name,
         email: userData.email,
+        password: userData.password,
         user_type: userData.user_type,
         created_at: new Date().toISOString(),
         ...(userData.user_type === 'influenciador' ? {
