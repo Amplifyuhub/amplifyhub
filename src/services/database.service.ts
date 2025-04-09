@@ -190,12 +190,11 @@ class DatabaseService {
         throw new Error('Erro ao criar usuário: Usuário não foi criado na autenticação');
       }
 
-      // Depois, criar o registro na tabela users
+      // Depois, criar o registro na tabela users (sem incluir a senha)
       const userDataWithTimestamp = {
         id: authData.user.id,
         name: userData.name,
         email: userData.email,
-        password: userData.password,
         user_type: userData.user_type,
         created_at: new Date().toISOString(),
         ...(userData.user_type === 'influenciador' ? {
