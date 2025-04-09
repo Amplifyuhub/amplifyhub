@@ -26,11 +26,23 @@ export default defineConfig(({ mode }) => {
         { find: '@assets', replacement: path.resolve(__dirname, 'src/assets') }
       ]
     },
+    publicDir: 'public',
     build: {
+      outDir: 'dist',
       assetsDir: 'assets',
       rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html')
+        },
         output: {
-          assetFileNames: 'assets/[name]-[hash][extname]'
+          assetFileNames: (assetInfo: { name?: string }) => {
+            const info = assetInfo.name?.split('.') || []
+            const ext = info[info.length - 1]
+            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+              return `assets/images/[name]-[hash][extname]`
+            }
+            return `assets/[name]-[hash][extname]`
+          }
         }
       }
     }
