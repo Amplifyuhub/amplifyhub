@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import { Users, Building2, BarChart as ChartBar, Rocket, Target, DollarSign, ChevronDown, Menu, X, User, Check } from 'lucide-react';
 import { Testimonials } from './components/Testimonials';
 import LoginDropdown from './components/LoginDropdown';
-import CampanhasMenu from './components/CampanhasMenu';
 import logoImage from './assets/logo.png';
 import principalImage from './assets/Principal.png';
 import RouteDebugger from './components/RouteDebugger';
-
 
 function FeatureCard({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) {
   return (
@@ -24,6 +22,7 @@ function FeatureCard({ icon: Icon, title, description }: { icon: React.ElementTy
 function App() {
   const [isLoginDropdownOpen, setIsLoginDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
 
   return (
     <>
@@ -42,8 +41,41 @@ function App() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
-            <CampanhasMenu />
-            <Link to="/influenciadores" className="text-gray-800 hover:text-orange-500 font-medium">Influenciadores</Link>
+            <Link to="/" className="text-gray-800 hover:text-orange-500 font-medium">
+              Página Inicial
+            </Link>
+            <Link to="/sobre" className="text-gray-800 hover:text-orange-500 font-medium">
+              Sobre Nós
+            </Link>
+            <div className="relative">
+              <button
+                onClick={() => setIsServicesMenuOpen(!isServicesMenuOpen)}
+                className="text-gray-800 hover:text-orange-500 font-medium flex items-center"
+              >
+                Serviços/Produtos
+                <ChevronDown size={16} className={`ml-1 transition-transform ${isServicesMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isServicesMenuOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg z-50 py-2">
+                  <Link
+                    to="/campanhas"
+                    className="block px-4 py-2 hover:bg-orange-50 text-sm text-gray-800"
+                  >
+                    Campanhas
+                  </Link>
+                  <Link
+                    to="/influenciadores"
+                    className="block px-4 py-2 hover:bg-orange-50 text-sm text-gray-800"
+                  >
+                    Influenciadores
+                  </Link>
+                </div>
+              )}
+            </div>
+            <Link to="/contato" className="text-gray-800 hover:text-orange-500 font-medium">
+              Contato
+            </Link>
           </div>
           
           {/* Botão de Login (desktop) */}
@@ -62,7 +94,7 @@ function App() {
           </div>
           
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-md text-gray-700 hover:bg-gray-100"
@@ -80,18 +112,52 @@ function App() {
           <div className="md:hidden bg-white shadow-lg absolute z-50 inset-x-0 animate-fadeIn">
             <div className="container mx-auto px-4 py-4 flex flex-col">
               <Link 
-                to="/campanhas" 
+                to="/" 
                 className="py-3 px-4 hover:bg-orange-50 border-b text-gray-800"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Campanhas
+                Página Inicial
               </Link>
               <Link 
-                to="/influenciadores" 
+                to="/sobre" 
                 className="py-3 px-4 hover:bg-orange-50 border-b text-gray-800"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Influenciadores
+                Sobre Nós
+              </Link>
+              <div className="py-3 px-4 border-b">
+                <button
+                  onClick={() => setIsServicesMenuOpen(!isServicesMenuOpen)}
+                  className="w-full text-left text-gray-800 flex items-center justify-between"
+                >
+                  Serviços/Produtos
+                  <ChevronDown size={16} className={`transition-transform ${isServicesMenuOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isServicesMenuOpen && (
+                  <div className="mt-2 pl-4">
+                    <Link
+                      to="/campanhas"
+                      className="block py-2 text-gray-800 hover:text-orange-500"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Campanhas
+                    </Link>
+                    <Link
+                      to="/influenciadores"
+                      className="block py-2 text-gray-800 hover:text-orange-500"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Influenciadores
+                    </Link>
+                  </div>
+                )}
+              </div>
+              <Link 
+                to="/contato" 
+                className="py-3 px-4 hover:bg-orange-50 border-b text-gray-800"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Contato
               </Link>
               <div className="pt-3 px-4">
                 <button 

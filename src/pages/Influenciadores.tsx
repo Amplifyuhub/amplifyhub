@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Search, Filter, ChevronDown } from 'lucide-react';
 import logoImage from '../assets/logo.png';
+import ProfileCompletionMeter from '../components/ProfileCompletionMeter';
 
 interface Influenciador {
   id: number;
@@ -11,6 +12,15 @@ interface Influenciador {
   engajamento: string;
   nicho: string[];
   image: string;
+  cidade: string;
+  instagram: string;
+  telefone: string;
+  email: string;
+  cpf: string;
+  dataNascimento: string;
+  idade: string;
+  engajamentoMedio: string;
+  biografia: string;
 }
 
 const Influenciadores = () => {
@@ -30,7 +40,16 @@ const Influenciadores = () => {
         seguidores: '12.5K',
         engajamento: '4.2%',
         nicho: ['Moda Sustentável', 'Estilo Casual'],
-        image: 'https://randomuser.me/api/portraits/women/44.jpg'
+        image: 'https://randomuser.me/api/portraits/women/44.jpg',
+        cidade: 'São Paulo',
+        instagram: '@anasilva',
+        telefone: '(11) 1234-5678',
+        email: 'ana@example.com',
+        cpf: '123.456.789-00',
+        dataNascimento: '01/01/1990',
+        idade: '33 anos',
+        engajamentoMedio: '4.5%',
+        biografia: 'Sou uma influenciadora de moda e estilo há 10 anos.'
       },
       {
         id: 2,
@@ -39,7 +58,16 @@ const Influenciadores = () => {
         seguidores: '8.3K',
         engajamento: '5.6%',
         nicho: ['Receitas Veganas', 'Comida Saudável'],
-        image: 'https://randomuser.me/api/portraits/men/32.jpg'
+        image: 'https://randomuser.me/api/portraits/men/32.jpg',
+        cidade: 'Rio de Janeiro',
+        instagram: '@carlossantos',
+        telefone: '(21) 9876-5432',
+        email: 'carlos@example.com',
+        cpf: '987.654.321-00',
+        dataNascimento: '15/05/1985',
+        idade: '38 anos',
+        engajamentoMedio: '5.2%',
+        biografia: 'Sou um chef de cozinha com 15 anos de experiência.'
       },
       {
         id: 3,
@@ -48,7 +76,16 @@ const Influenciadores = () => {
         seguidores: '25.7K',
         engajamento: '3.8%',
         nicho: ['Treino em Casa', 'Nutrição Esportiva'],
-        image: 'https://randomuser.me/api/portraits/women/68.jpg'
+        image: 'https://randomuser.me/api/portraits/women/68.jpg',
+        cidade: 'Belo Horizonte',
+        instagram: '@marinacost',
+        telefone: '(31) 8765-4321',
+        email: 'marina@example.com',
+        cpf: '876.543.210-00',
+        dataNascimento: '20/07/1995',
+        idade: '28 anos',
+        engajamentoMedio: '3.9%',
+        biografia: 'Sou uma personal trainer com 5 anos de experiência.'
       },
       {
         id: 4,
@@ -57,7 +94,16 @@ const Influenciadores = () => {
         seguidores: '18.2K',
         engajamento: '3.2%',
         nicho: ['Gadgets', 'Reviews de Produtos'],
-        image: 'https://randomuser.me/api/portraits/men/15.jpg'
+        image: 'https://randomuser.me/api/portraits/men/15.jpg',
+        cidade: 'São Paulo',
+        instagram: '@robertoalves',
+        telefone: '(11) 5678-9012',
+        email: 'roberto@example.com',
+        cpf: '567.890.123-00',
+        dataNascimento: '10/03/1980',
+        idade: '43 anos',
+        engajamentoMedio: '3.3%',
+        biografia: 'Sou um especialista em tecnologia com 12 anos de experiência.'
       },
       {
         id: 5,
@@ -66,7 +112,16 @@ const Influenciadores = () => {
         seguidores: '32.9K',
         engajamento: '4.7%',
         nicho: ['Maquiagem', 'Cuidados com a Pele'],
-        image: 'https://randomuser.me/api/portraits/women/26.jpg'
+        image: 'https://randomuser.me/api/portraits/women/26.jpg',
+        cidade: 'Rio de Janeiro',
+        instagram: '@camilamendes',
+        telefone: '(21) 4567-8901',
+        email: 'camila@example.com',
+        cpf: '456.789.012-00',
+        dataNascimento: '18/12/1992',
+        idade: '31 anos',
+        engajamentoMedio: '4.6%',
+        biografia: 'Sou uma especialista em beleza com 8 anos de experiência.'
       },
       {
         id: 6,
@@ -75,7 +130,16 @@ const Influenciadores = () => {
         seguidores: '22.4K',
         engajamento: '5.1%',
         nicho: ['Destinos Nacionais', 'Dicas de Viagem'],
-        image: 'https://randomuser.me/api/portraits/men/62.jpg'
+        image: 'https://randomuser.me/api/portraits/men/62.jpg',
+        cidade: 'São Paulo',
+        instagram: '@lucasoliveira',
+        telefone: '(11) 3456-7890',
+        email: 'lucas@example.com',
+        cpf: '345.678.901-00',
+        dataNascimento: '05/09/1987',
+        idade: '36 anos',
+        engajamentoMedio: '5.0%',
+        biografia: 'Sou um viajante que adora compartilhar suas aventuras.'
       }
     ];
 
@@ -177,70 +241,79 @@ const Influenciadores = () => {
         </div>
         
         {/* Grid de Influenciadores */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {influenciadoresFiltrados.length > 0 ? (
-            influenciadoresFiltrados.map(influenciador => (
-              <div key={influenciador.id} className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                <div className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img 
-                      src={influenciador.image} 
-                      alt={influenciador.nome} 
-                      className="w-16 h-16 rounded-full object-cover"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {influenciadoresFiltrados.map(influenciador => (
+            <div key={influenciador.id} className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="p-4 md:p-6">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 md:gap-4 mb-4">
+                  <div className="w-20 md:w-auto">
+                    <ProfileCompletionMeter
+                      profileData={{
+                        nome: influenciador.nome,
+                        foto: influenciador.image,
+                        cidade: influenciador.cidade,
+                        instagram: influenciador.instagram,
+                        telefone: influenciador.telefone,
+                        email: influenciador.email,
+                        cpf: influenciador.cpf,
+                        dataNascimento: influenciador.dataNascimento,
+                        idade: influenciador.idade,
+                        categoria: influenciador.categoria,
+                        seguidores: influenciador.seguidores,
+                        engajamentoMedio: influenciador.engajamentoMedio,
+                        biografia: influenciador.biografia
+                      }}
+                      size="sm"
                     />
-                    <div>
-                      <h3 className="font-medium text-gray-900">{influenciador.nome}</h3>
-                      <p className="text-sm text-gray-500">{influenciador.categoria}</p>
-                    </div>
                   </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <p className="text-sm text-gray-500">Seguidores</p>
-                      <p className="text-xl font-bold text-gray-900">{influenciador.seguidores}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Engajamento</p>
-                      <p className="text-xl font-bold text-gray-900">{influenciador.engajamento}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="mb-5">
-                    <p className="text-sm text-gray-500 mb-2">Nichos</p>
-                    <div className="flex flex-wrap gap-2">
-                      {influenciador.nicho.map((nicho, index) => (
-                        <span 
-                          key={index} 
-                          className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full"
-                        >
-                          {nicho}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="flex space-x-2">
-                    <button 
-                      onClick={() => navigate(`/influenciador/${influenciador.id}`)}
-                      className="flex-1 px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
-                    >
-                      Ver perfil
-                    </button>
-                    <button 
-                      onClick={() => navigate('/campanhas')}
-                      className="flex-1 px-3 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      Ver campanhas
-                    </button>
+                  <div className="text-center sm:text-left">
+                    <h3 className="font-medium text-gray-900">{influenciador.nome}</h3>
+                    <p className="text-sm text-gray-500">{influenciador.categoria}</p>
                   </div>
                 </div>
+                
+                <div className="grid grid-cols-2 gap-3 md:gap-4 mb-4">
+                  <div className="bg-gray-50 p-3 rounded-lg">
+                    <p className="text-sm text-gray-500">Seguidores</p>
+                    <p className="text-lg md:text-xl font-bold text-gray-900">{influenciador.seguidores}</p>
+                  </div>
+                  <div className="bg-gray-50 p-3 rounded-lg">
+                    <p className="text-sm text-gray-500">Engajamento</p>
+                    <p className="text-lg md:text-xl font-bold text-gray-900">{influenciador.engajamento}</p>
+                  </div>
+                </div>
+                
+                <div className="mb-4">
+                  <p className="text-sm text-gray-500 mb-2">Nichos</p>
+                  <div className="flex flex-wrap gap-2">
+                    {influenciador.nicho.map((nicho, index) => (
+                      <span 
+                        key={index} 
+                        className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full"
+                      >
+                        {nicho}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <button 
+                    onClick={() => navigate(`/influenciador/${influenciador.id}`)}
+                    className="flex-1 px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors text-sm md:text-base"
+                  >
+                    Ver perfil
+                  </button>
+                  <button 
+                    onClick={() => navigate('/campanhas')}
+                    className="flex-1 px-3 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm md:text-base"
+                  >
+                    Ver campanhas
+                  </button>
+                </div>
               </div>
-            ))
-          ) : (
-            <div className="col-span-full text-center py-12">
-              <p className="text-gray-500 text-lg">Nenhum influenciador encontrado com os filtros atuais.</p>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </div>
