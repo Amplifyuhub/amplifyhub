@@ -220,7 +220,7 @@ const Influenciadores = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Categorias */}
         <div className="mb-6 overflow-x-auto">
           <div className="flex space-x-2 min-w-max">
@@ -271,7 +271,7 @@ const Influenciadores = () => {
                     <p className="text-sm text-gray-500">{influenciador.categoria}</p>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-3 md:gap-4 mb-4">
                   <div className="bg-gray-50 p-3 rounded-lg">
                     <p className="text-sm text-gray-500">Seguidores</p>
@@ -282,7 +282,7 @@ const Influenciadores = () => {
                     <p className="text-lg md:text-xl font-bold text-gray-900">{influenciador.engajamento}</p>
                   </div>
                 </div>
-                
+
                 <div className="mb-4">
                   <p className="text-sm text-gray-500 mb-2">Nichos</p>
                   <div className="flex flex-wrap gap-2">
