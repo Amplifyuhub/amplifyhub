@@ -14,14 +14,11 @@ import DesempenhoInfluenciador from './pages/DesempenhoInfluenciador'
 import InfluenciadoresAnunciante from './pages/InfluenciadoresAnunciante'
 import CampanhasAnunciante from './pages/CampanhasAnunciante'
 import Influenciadores from './pages/Influenciadores'
-<<<<<<< HEAD
-=======
 import TesteBanco from './pages/TesteBanco'
 import CadastroAnunciante from './pages/CadastroAnunciante'
 import CadastroInfluenciador from './pages/CadastroInfluenciador'
 import NovaCampanha from './pages/NovaCampanha'
 import ConfirmacaoCadastro from './pages/ConfirmacaoCadastro'
->>>>>>> luiz
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -44,14 +41,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/campanha/:id" element={<CampanhasAnunciante />} />
         <Route path="/influenciadores" element={<Influenciadores />} />
         <Route path="/influenciador/:id" element={<Influenciadores />} />
-<<<<<<< HEAD
-=======
         <Route path="/teste-banco" element={<TesteBanco />} />
         <Route path="/cadastro-anunciante" element={<CadastroAnunciante />} />
         <Route path="/cadastro-influenciador" element={<CadastroInfluenciador />} />
         <Route path="/nova-campanha" element={<NovaCampanha />} />
         <Route path="/confirmacao-cadastro" element={<ConfirmacaoCadastro />} />
->>>>>>> luiz
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
