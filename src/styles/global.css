@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 :root {
   /* Substitua os valores atuais pelas novas cores desejadas */
   --primary-color: #f97316; /* Laranja (orange-500 no Tailwind) */
+=======
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #ff5d1d;
+  --background-color: #ffffff;
+  /* Substitua os valores atuais pelas novas cores desejadas */
+>>>>>>> luiz
   --secondary-color: #fb923c; /* Laranja mais claro (orange-400) */
   --accent-color: #fdba74; /* Laranja ainda mais claro (orange-300) */
   --hover-color: #ee6b25; /* Laranja mais escuro (orange-600) */
@@ -12,6 +23,37 @@
   --gradient-end: #ffb55d;
 }
 
+<<<<<<< HEAD
+=======
+@layer base {
+  body {
+    @apply bg-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#ff5d1d] text-white hover:bg-[#ff5d1d]/90;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-[#ff5d1d] text-[#ff5d1d] hover:bg-[#ff5d1d]/10;
+  }
+  
+  .text-primary {
+    @apply text-[#ff5d1d];
+  }
+  
+  .bg-primary {
+    @apply bg-[#ff5d1d];
+  }
+  
+  .hover-primary {
+    @apply hover:text-[#ff5d1d];
+  }
+}
+
+>>>>>>> luiz
 /* Classe personalizada para substituir .to-white */
 .to-orange-light {
   --tw-gradient-to: var(--gradient-end) var(--tw-gradient-to-position);

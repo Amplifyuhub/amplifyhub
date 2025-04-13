@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Mail, Lock, Building2 } from 'lucide-react';
@@ -15,6 +16,67 @@ const LoginAnunciante = () => {
     console.log('Login de anunciante:', { email, senha, lembrar });
     // Lógica de autenticação aqui
     navigate('/painel-anunciante'); // Redireciona para o painel após login
+=======
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { ArrowLeft, Mail, Lock, Building2, Eye, EyeOff } from 'lucide-react';
+import { databaseService } from '../services/database.service';
+import logoImage from '../assets/logo.png';
+
+const LoginAnunciante = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [redirectUrl, setRedirectUrl] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // Recuperar o parâmetro de redirecionamento da URL, se existir
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const redirect = params.get('redirect');
+    if (redirect) {
+      setRedirectUrl(redirect);
+    }
+  }, [location]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    
+    try {
+      // Validar campos
+      if (!email || !password) {
+        throw new Error('Por favor, preencha todos os campos');
+      }
+
+      // Tentar fazer login
+      const user = await databaseService.loginUser(email, password);
+
+      // Verificar se o usuário é um anunciante
+      if (user.user_type !== 'anunciante') {
+        throw new Error('Esta conta não é de um anunciante');
+      }
+
+      // Salvar dados do usuário na sessão
+      localStorage.setItem('user', JSON.stringify(user));
+      
+      // Redirecionar para a página solicitada ou para o painel do anunciante
+      if (redirectUrl) {
+        navigate(redirectUrl);
+      } else {
+        navigate('/painel-anunciante');
+      }
+    } catch (error) {
+      console.error('Erro no login:', error);
+      setError(error instanceof Error ? error.message : 'Erro ao fazer login');
+    } finally {
+      setLoading(false);
+    }
+>>>>>>> luiz
   };
 
   return (
@@ -29,7 +91,11 @@ const LoginAnunciante = () => {
             <img 
               src={logoImage} 
               alt="Amplify" 
+<<<<<<< HEAD
               className="h-8" // Ajuste a altura conforme necessário
+=======
+              className="h-8"
+>>>>>>> luiz
             />
           </Link>
         </div>
@@ -45,6 +111,15 @@ const LoginAnunciante = () => {
             </p>
           </div>
 
+<<<<<<< HEAD
+=======
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-lg">
+              {error}
+            </div>
+          )}
+
+>>>>>>> luiz
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -61,13 +136,22 @@ const LoginAnunciante = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+<<<<<<< HEAD
                   placeholder="Email da empresa"
+=======
+                  placeholder="Seu email"
+                  disabled={loading}
+>>>>>>> luiz
                 />
               </div>
             </div>
 
             <div>
+<<<<<<< HEAD
               <label htmlFor="senha" className="block text-sm font-medium text-gray-700 mb-1">
+=======
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+>>>>>>> luiz
                 Senha
               </label>
               <div className="relative">
@@ -75,6 +159,7 @@ const LoginAnunciante = () => {
                   <Lock className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
+<<<<<<< HEAD
                   id="senha"
                   type="password"
                   value={senha}
@@ -83,10 +168,30 @@ const LoginAnunciante = () => {
                   className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Sua senha"
                 />
+=======
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  placeholder="Sua senha"
+                  disabled={loading}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  disabled={loading}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+>>>>>>> luiz
               </div>
             </div>
 
             <div className="flex items-center justify-between">
+<<<<<<< HEAD
               <div className="flex items-center">
                 <input
                   id="lembrar"
@@ -100,6 +205,8 @@ const LoginAnunciante = () => {
                 </label>
               </div>
 
+=======
+>>>>>>> luiz
               <div className="text-sm">
                 <a href="#" className="text-orange-500 hover:underline">
                   Esqueceu a senha?
@@ -110,9 +217,18 @@ const LoginAnunciante = () => {
             <div>
               <button
                 type="submit"
+<<<<<<< HEAD
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg transition duration-300 ease-in-out font-medium"
               >
                 Entrar
+=======
+                className={`w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg transition duration-300 ease-in-out font-medium ${
+                  loading ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={loading}
+              >
+                {loading ? 'Entrando...' : 'Entrar'}
+>>>>>>> luiz
               </button>
             </div>
           </form>

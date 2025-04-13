@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { Award, Users, BarChart2, LogOut, Bell, User, MapPin, Instagram, Phone, Mail, Calendar, Edit, AlertCircle } from 'lucide-react';
 import logoImage from '../assets/logo.png'; // Importação consistente do logo
 import { useState, useEffect } from 'react';
@@ -76,6 +77,14 @@ const PainelInfluenciador = () => {
     }));
   };
 
+=======
+import { Award, Users, BarChart2, LogOut, Bell } from 'lucide-react';
+import logoImage from '../assets/logo.png'; // Importação consistente do logo
+
+const PainelInfluenciador = () => {
+  const navigate = useNavigate();
+  
+>>>>>>> luiz
   // Funções de navegação para cada rota
   const goToHome = () => navigate('/');
   const goToDashboard = () => navigate('/painel-influenciador');
@@ -87,6 +96,7 @@ const PainelInfluenciador = () => {
     navigate('/desempenho-influenciador');
   };
   
+<<<<<<< HEAD
   const getCompletionColor = () => {
     if (completionPercentage >= 100) return 'text-green-500';
     if (completionPercentage >= 70) return 'text-yellow-500';
@@ -99,6 +109,8 @@ const PainelInfluenciador = () => {
     return '#ef4444';
   };
 
+=======
+>>>>>>> luiz
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
@@ -163,6 +175,7 @@ const PainelInfluenciador = () => {
                   <span>Desempenho</span>
                 </button>
               </li>
+<<<<<<< HEAD
               <li>
                 <button 
                   className="w-full flex items-center space-x-3 p-3 rounded-lg text-gray-700 hover:bg-gray-50 text-left"
@@ -171,6 +184,8 @@ const PainelInfluenciador = () => {
                   <span>Meu Perfil</span>
                 </button>
               </li>
+=======
+>>>>>>> luiz
               <li className="pt-4 border-t">
                 <button 
                   onClick={goToHome}
@@ -186,6 +201,7 @@ const PainelInfluenciador = () => {
         
         {/* Main Content */}
         <div className="flex-1">
+<<<<<<< HEAD
           {/* Perfil do Influenciador */}
           <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
             <div className="flex justify-between items-start mb-6">
@@ -396,6 +412,8 @@ const PainelInfluenciador = () => {
             </div>
           </div>
 
+=======
+>>>>>>> luiz
           <h1 className="text-2xl font-bold text-gray-900 mb-6">Bem-vindo ao seu Dashboard</h1>
           
           {/* Stats */}

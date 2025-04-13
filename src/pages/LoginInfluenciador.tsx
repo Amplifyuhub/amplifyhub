@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+<<<<<<< HEAD
+=======
+import { databaseService } from '../services/database.service';
+>>>>>>> luiz
 import logoImage from '../assets/logo.png';
 
 const LoginInfluenciador = () => {
@@ -10,6 +14,11 @@ const LoginInfluenciador = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState('');
+<<<<<<< HEAD
+=======
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+>>>>>>> luiz
 
   // Recuperar o parâmetro de redirecionamento da URL, se existir
   useEffect(() => {
@@ -20,6 +29,7 @@ const LoginInfluenciador = () => {
     }
   }, [location]);
 
+<<<<<<< HEAD
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -27,6 +37,29 @@ const LoginInfluenciador = () => {
     if (email && password) {
       // Em uma aplicação real, aqui teríamos uma chamada à API para autenticação
       localStorage.setItem('influenciador_logado', 'true');
+=======
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    
+    try {
+      // Validar campos
+      if (!email || !password) {
+        throw new Error('Por favor, preencha todos os campos');
+      }
+
+      // Tentar fazer login
+      const user = await databaseService.loginUser(email, password);
+
+      // Verificar se o usuário é um influenciador
+      if (user.user_type !== 'influenciador') {
+        throw new Error('Esta conta não é de um influenciador');
+      }
+
+      // Salvar dados do usuário na sessão
+      localStorage.setItem('user', JSON.stringify(user));
+>>>>>>> luiz
       
       // Redirecionar para a página solicitada ou para o painel do influenciador
       if (redirectUrl) {
@@ -34,6 +67,14 @@ const LoginInfluenciador = () => {
       } else {
         navigate('/painel-influenciador');
       }
+<<<<<<< HEAD
+=======
+    } catch (error) {
+      console.error('Erro no login:', error);
+      setError(error instanceof Error ? error.message : 'Erro ao fazer login');
+    } finally {
+      setLoading(false);
+>>>>>>> luiz
     }
   };
 
@@ -41,7 +82,11 @@ const LoginInfluenciador = () => {
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-orange-light py-16 px-4">
       <div className="container mx-auto max-w-md">
         <div className="flex justify-between items-center mb-8">
+<<<<<<< HEAD
           <Link to="/" className="inline-flex items-center text-gray-600 hover:text-orange-500">
+=======
+          <Link to="/" className="inline-flex items-center text-gray-600 hover:text-[#ff5d1d]">
+>>>>>>> luiz
             <ArrowLeft className="mr-2 h-5 w-5" />
             Voltar
           </Link>
@@ -56,8 +101,13 @@ const LoginInfluenciador = () => {
 
         <div className="bg-white rounded-xl shadow-lg p-8">
           <div className="flex flex-col items-center mb-6">
+<<<<<<< HEAD
             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
               <User size={32} className="text-orange-500" />
+=======
+            <div className="w-16 h-16 bg-[#ff5d1d]/10 rounded-full flex items-center justify-center mb-4">
+              <User size={32} className="text-[#ff5d1d]" />
+>>>>>>> luiz
             </div>
             <h1 className="text-2xl font-bold text-gray-900">Login de Influenciador</h1>
             <p className="text-gray-500 mt-2 text-center">
@@ -65,6 +115,15 @@ const LoginInfluenciador = () => {
             </p>
           </div>
 
+<<<<<<< HEAD
+=======
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-lg">
+              {error}
+            </div>
+          )}
+
+>>>>>>> luiz
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -80,8 +139,14 @@ const LoginInfluenciador = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+<<<<<<< HEAD
                   className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Seu email"
+=======
+                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5d1d] focus:border-transparent"
+                  placeholder="Seu email"
+                  disabled={loading}
+>>>>>>> luiz
                 />
               </div>
             </div>
@@ -100,13 +165,23 @@ const LoginInfluenciador = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+<<<<<<< HEAD
                   className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   placeholder="Sua senha"
+=======
+                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff5d1d] focus:border-transparent"
+                  placeholder="Sua senha"
+                  disabled={loading}
+>>>>>>> luiz
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+<<<<<<< HEAD
+=======
+                  disabled={loading}
+>>>>>>> luiz
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -115,7 +190,11 @@ const LoginInfluenciador = () => {
 
             <div className="flex items-center justify-between">
               <div className="text-sm">
+<<<<<<< HEAD
                 <a href="#" className="text-orange-500 hover:underline">
+=======
+                <a href="#" className="text-[#ff5d1d] hover:underline">
+>>>>>>> luiz
                   Esqueceu a senha?
                 </a>
               </div>
@@ -124,9 +203,18 @@ const LoginInfluenciador = () => {
             <div>
               <button
                 type="submit"
+<<<<<<< HEAD
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-lg transition duration-300 ease-in-out font-medium"
               >
                 Entrar
+=======
+                className={`w-full bg-[#ff5d1d] hover:bg-[#ff5d1d]/90 text-white py-3 px-4 rounded-lg transition duration-300 ease-in-out font-medium ${
+                  loading ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={loading}
+              >
+                {loading ? 'Entrando...' : 'Entrar'}
+>>>>>>> luiz
               </button>
             </div>
           </form>
@@ -134,7 +222,11 @@ const LoginInfluenciador = () => {
           <div className="text-center mt-6">
             <p className="text-gray-600">
               Não tem uma conta ainda?{' '}
+<<<<<<< HEAD
               <Link to="/cadastro" className="text-orange-500 hover:underline font-medium">
+=======
+              <Link to="/cadastro" className="text-[#ff5d1d] hover:underline font-medium">
+>>>>>>> luiz
                 Cadastre-se
               </Link>
             </p>

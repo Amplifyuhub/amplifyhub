@@ -15,8 +15,23 @@ export default {
           700: '#c2410c',
           800: '#9a3412',
           900: '#ff7026',
+<<<<<<< HEAD
         }
       }
+=======
+        },
+        primary: '#ff5d1d',
+      },
+      backgroundColor: {
+        primary: '#ff5d1d',
+      },
+      textColor: {
+        primary: '#ff5d1d',
+      },
+      borderColor: {
+        primary: '#ff5d1d',
+      },
+>>>>>>> luiz
     },
   },
   plugins: [],
