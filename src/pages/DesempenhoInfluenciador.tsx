@@ -13,10 +13,10 @@ const DesempenhoInfluenciador = () => {
   const goToDesempenho = () => navigate('/desempenho-influenciador');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 w-full max-w-full overflow-x-hidden">
       {/* Navbar */}
-      <nav className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-3">
+      <nav className="bg-white shadow-sm w-full max-w-full">
+        <div className="container mx-auto px-4 py-3 w-full max-w-full">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <button onClick={goToHome} className="text-2xl font-bold text-gray-900">
@@ -43,9 +43,9 @@ const DesempenhoInfluenciador = () => {
       </nav>
       
       {/* Sidebar and Main Content */}
-      <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
+      <div className="container mx-auto px-2 sm:px-4 py-8 flex flex-col md:flex-row gap-8 w-full max-w-full">
         {/* Sidebar */}
-        <div className="md:w-64 flex-shrink-0">
+        <div className="md:w-64 flex-shrink-0 w-full md:max-w-xs">
           <div className="bg-white rounded-xl shadow-sm p-4">
             <ul className="space-y-2">
               <li>
@@ -89,7 +89,7 @@ const DesempenhoInfluenciador = () => {
         </div>
         
         {/* Main Content */}
-        <div className="flex-1">
+        <div className="flex-1 w-full max-w-full">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold text-gray-900">Análise de Desempenho</h1>
             
@@ -192,10 +192,10 @@ const DesempenhoInfluenciador = () => {
           </div>
           
           {/* Campaign Performance Table */}
-          <div className="bg-white p-6 rounded-xl shadow-sm">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm w-full max-w-full">
             <h2 className="text-xl font-bold text-gray-900 mb-6">Desempenho por Campanha</h2>
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
+            <div className="overflow-x-auto w-full">
+              <table className="min-w-full divide-y divide-gray-200 w-full">
                 <thead className="bg-gray-50">
                   <tr>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
