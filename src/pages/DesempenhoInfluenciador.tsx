@@ -90,89 +90,93 @@ const DesempenhoInfluenciador = () => {
         
         {/* Main Content */}
         <div className="flex-1 w-full max-w-full">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex justify-between items-center mb-6 flex-col sm:flex-row gap-4">
             <h1 className="text-2xl font-bold text-gray-900">Análise de Desempenho</h1>
             
-            <div className="flex items-center gap-3">
-              <select className="px-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+            <div className="flex items-center gap-3 w-full sm:w-auto flex-col sm:flex-row">
+              <select className="w-full sm:w-auto px-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
                 <option>Últimos 30 dias</option>
                 <option>Últimos 90 dias</option>
                 <option>Este ano</option>
                 <option>Todo o período</option>
               </select>
               
-              <button className="px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
+              <button className="w-full sm:w-auto px-3 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
                 Exportar Relatório
               </button>
             </div>
           </div>
           
           {/* Stats Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-sm font-medium text-gray-500">Alcance Total</h3>
                 <div className="p-2 bg-blue-100 rounded-lg">
                   <Eye className="h-5 w-5 text-blue-600" />
                 </div>
               </div>
-              <p className="text-3xl font-bold text-gray-900">25.4K</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">25.4K</p>
               <div className="flex items-center mt-2 text-sm">
                 <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
                 <span className="text-green-500 font-medium">+12.5%</span>
-                <span className="text-gray-500 ml-1">vs mês anterior</span>
+                <span className="text-gray-500 ml-1 hidden sm:inline">vs mês anterior</span>
+                <span className="text-gray-500 ml-1 sm:hidden">vs anterior</span>
               </div>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-sm font-medium text-gray-500">Engajamento</h3>
                 <div className="p-2 bg-purple-100 rounded-lg">
                   <ThumbsUp className="h-5 w-5 text-purple-600" />
                 </div>
               </div>
-              <p className="text-3xl font-bold text-gray-900">3.2K</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">3.2K</p>
               <div className="flex items-center mt-2 text-sm">
                 <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
                 <span className="text-green-500 font-medium">+5.8%</span>
-                <span className="text-gray-500 ml-1">vs mês anterior</span>
+                <span className="text-gray-500 ml-1 hidden sm:inline">vs mês anterior</span>
+                <span className="text-gray-500 ml-1 sm:hidden">vs anterior</span>
               </div>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-sm font-medium text-gray-500">Campanhas</h3>
                 <div className="p-2 bg-orange-100 rounded-lg">
                   <Share className="h-5 w-5 text-orange-500" />
                 </div>
               </div>
-              <p className="text-3xl font-bold text-gray-900">12</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">12</p>
               <div className="flex items-center mt-2 text-sm">
                 <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
                 <span className="text-green-500 font-medium">+2</span>
-                <span className="text-gray-500 ml-1">vs mês anterior</span>
+                <span className="text-gray-500 ml-1 hidden sm:inline">vs mês anterior</span>
+                <span className="text-gray-500 ml-1 sm:hidden">vs anterior</span>
               </div>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
               <div className="flex justify-between items-start mb-4">
                 <h3 className="text-sm font-medium text-gray-500">Receita Total</h3>
                 <div className="p-2 bg-green-100 rounded-lg">
                   <DollarSign className="h-5 w-5 text-green-600" />
                 </div>
               </div>
-              <p className="text-3xl font-bold text-gray-900">R$ 5.830</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">R$ 5.830</p>
               <div className="flex items-center mt-2 text-sm">
                 <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
                 <span className="text-green-500 font-medium">+18.3%</span>
-                <span className="text-gray-500 ml-1">vs mês anterior</span>
+                <span className="text-gray-500 ml-1 hidden sm:inline">vs mês anterior</span>
+                <span className="text-gray-500 ml-1 sm:hidden">vs anterior</span>
               </div>
             </div>
           </div>
           
           {/* Performance Graph */}
-          <div className="bg-white p-6 rounded-xl shadow-sm mb-8">
-            <div className="flex justify-between items-center mb-6">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm mb-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
               <h2 className="text-xl font-bold text-gray-900">Alcance por Campanha</h2>
               <div className="flex items-center gap-4">
                 <div className="flex items-center">
@@ -185,99 +189,101 @@ const DesempenhoInfluenciador = () => {
                 </div>
               </div>
             </div>
-            <div className="h-64 w-full bg-gray-50 rounded-lg flex items-center justify-center">
+            <div className="h-48 sm:h-64 w-full bg-gray-50 rounded-lg flex items-center justify-center">
               <p className="text-gray-500">Gráfico de desempenho aqui</p>
-              {/* Em uma implementação real, aqui seria integrado um gráfico */}
             </div>
           </div>
           
           {/* Campaign Performance Table */}
-          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm w-full max-w-full">
+          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm">
             <h2 className="text-xl font-bold text-gray-900 mb-6">Desempenho por Campanha</h2>
             <div className="overflow-x-auto w-full">
               <table className="min-w-full divide-y divide-gray-200 w-full">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Campanha
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
                       Anunciante
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Período
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Alcance
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
                       Engajamento
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Receita
                     </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="font-medium text-gray-900">Lançamento de Produto</div>
+                      <div className="text-sm text-gray-500 sm:hidden">Café Especial Gourmet</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                       <div className="text-gray-700">Café Especial Gourmet</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="text-gray-700">10/09 - 30/12</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="text-gray-700">8.5K</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                       <div className="text-gray-700">1.2K</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="font-medium text-gray-900">R$ 650,00</div>
                     </td>
                   </tr>
                   
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="font-medium text-gray-900">Novo Cardápio Sazonal</div>
+                      <div className="text-sm text-gray-500 sm:hidden">Restaurante Sabor & Arte</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                       <div className="text-gray-700">Restaurante Sabor & Arte</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="text-gray-700">15/08 - 15/01</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="text-gray-700">10.2K</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                       <div className="text-gray-700">1.8K</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="font-medium text-gray-900">R$ 850,00</div>
                     </td>
                   </tr>
                   
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="font-medium text-gray-900">Coleção de Verão</div>
+                      <div className="text-sm text-gray-500 sm:hidden">Loja de Roupas Estilo</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                       <div className="text-gray-700">Loja de Roupas Estilo</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="text-gray-700">01/10 - 10/12</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="text-gray-700">6.7K</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                       <div className="text-gray-700">920</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                       <div className="font-medium text-gray-900">R$ 450,00</div>
                     </td>
                   </tr>
