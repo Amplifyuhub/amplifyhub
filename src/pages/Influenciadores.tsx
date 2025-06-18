@@ -178,17 +178,17 @@ const Influenciadores = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
       <nav className="bg-white border-b">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div 
             onClick={() => navigate('/')} 
-            className="cursor-pointer"
+            className="cursor-pointer mb-2 sm:mb-0"
           >
             <img src={logoImage} alt="Amplify" className="h-8" />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 w-full sm:w-auto justify-end">
             <button 
               onClick={() => navigate('/login')}
-              className="px-6 py-2 bg-white text-orange-500 rounded-full font-medium border-2 border-orange-500 hover:bg-orange-50 transition-colors"
+              className="px-6 py-2 bg-white text-orange-500 rounded-full font-medium border-2 border-orange-500 hover:bg-orange-50 transition-colors w-full sm:w-auto"
             >
               Login
             </button>
@@ -198,10 +198,10 @@ const Influenciadores = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-6 flex-col md:flex-row gap-4">
-          <h1 className="text-2xl font-bold text-gray-900">Influenciadores</h1>
-          <div className="flex items-center space-x-2 w-full md:w-auto">
-            <div className="relative flex-1 md:flex-initial">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+          <h1 className="text-2xl font-bold text-gray-900 w-full md:w-auto text-center md:text-left">Influenciadores</h1>
+          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 w-full md:w-auto">
+            <div className="relative flex-1 md:flex-initial w-full sm:w-auto">
               <input 
                 type="text" 
                 placeholder="Buscar influenciadores" 
@@ -211,8 +211,8 @@ const Influenciadores = () => {
               />
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             </div>
-            <div className="relative">
-              <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 flex items-center gap-2 hover:bg-gray-50">
+            <div className="relative w-full sm:w-auto">
+              <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 flex items-center gap-2 hover:bg-gray-50 w-full sm:w-auto">
                 <Filter className="h-4 w-4" />
                 <span>Filtrar</span>
                 <ChevronDown className="h-4 w-4" />
@@ -227,7 +227,7 @@ const Influenciadores = () => {
             {categorias.map((categoria, index) => (
               <button 
                 key={index}
-                className={`px-4 py-2 rounded-lg ${
+                className={`px-4 py-2 rounded-lg whitespace-nowrap ${
                   selectedCategoria === categoria 
                     ? 'bg-orange-500 text-white' 
                     : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
